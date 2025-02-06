@@ -1,5 +1,10 @@
 import Button from "./Button";
-export default function ProjectsSideBar({ onStartAddProject, projects }) {
+export default function ProjectsSideBar({
+  onStartAddProject,
+  projects,
+  onSelecteProject,
+  selectdProjectId,
+}) {
   return (
     <>
       <aside
@@ -17,18 +22,24 @@ export default function ProjectsSideBar({ onStartAddProject, projects }) {
           <Button onClick={onStartAddProject}></Button>
         </div>
         <ul className=" mt-8">
-          {projects.map(project => (
-            <li key={project.id}>
-              <button
-                className="w-full text-left px-2 py-1 rounded-sm 
-                my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-900
-                
-                "
-              >
-                {project.title}
-              </button>
-            </li>
-          ))}
+          {projects.map((project) => {
+            let cssClasses="w-full text-left px-2 py-1 rounde my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-900 "
+            if(project.id===selectdProjectId){
+              cssClasses+="bg-stone-800 text-stone-200"
+            }else{
+              cssClasses+= "text-stone-400"
+            }
+            return (
+              <li key={project.id}>
+                <button
+                  className={cssClasses}
+                  onClick={()=>onSelecteProject(project.id)}
+                >
+                  {project.title}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </aside>
     </>

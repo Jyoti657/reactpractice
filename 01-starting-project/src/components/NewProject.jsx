@@ -1,7 +1,7 @@
 import Input from "./Input";
 import { useRef } from "react";
 import Modal from "./Modal";
-export default function NewProject({onAdd}) {
+export default function NewProject({onAdd,onCancel}) {
     const modal=useRef();
     const title  =useRef();
      const description =useRef();
@@ -42,6 +42,7 @@ export default function NewProject({onAdd}) {
             className=" text-stone-800 
                 hover:text-stone-950
                 "
+                onClick={onCancel}
           >
             Cancel
           </button>
